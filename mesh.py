@@ -20,7 +20,7 @@ def create_mesh(nii_path, output_path):
 
     mesh = trimesh.Trimesh(vertices=verts, faces=faces, vertex_normals=normals)
     mesh.export(output_path)
-    print(f"✅ Saved GT mesh in mm space: {output_path}")
+    print(f"Saved GT mesh in mm space: {output_path}")
 
 def batch_convert_us_labels(input_dir, output_dir):
     os.makedirs(output_dir, exist_ok=True)
@@ -32,4 +32,4 @@ def batch_convert_us_labels(input_dir, output_dir):
             create_mesh(nii_path, output_path)
 
 if __name__ == "__main__":
-    batch_convert_us_labels("prostate_dset/val/us_labels", "prostate_iso_surface_predictions")
+    batch_convert_us_labels("prostate/prostate_dset/val/us_labels", "prostate/prostate_iso_surface_predictions")

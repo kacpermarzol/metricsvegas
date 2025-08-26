@@ -97,16 +97,18 @@ def rotation_matrix_z(angle_degrees):
     R[1, 1] = np.cos(angle)
     return R
 
-def prepare_mesh(pred_mesh_, gt_mesh, x, y, z, threshold=20.0):
+def rotate_mesh(mesh, x,y,z):
     Rx = rotation_matrix_x(x)
     Ry = rotation_matrix_y(y)
     Rz = rotation_matrix_z(z)
-
     combined_rotation = Rx @ Ry @ Rz
 
-    pred_mesh = pred_mesh_.copy()
-    pred_mesh.apply_transform(combined_rotation)
-    # pred_mesh = scale_mesh_to_match(pred_mesh, gt_mesh)
+    res_mesh = mesh.copy()
+    res_mesh.apply_transform(combined_rotation)
+    return res_mesh
+
+def prepare_mesh(pred_mesh_, gt_mesh, x, y, z, threshold=20.0):
+    pred_mesh = rotate_mesh(pred_mesh_, x, y, z)
     pred_mesh, _ = icp_align(pred_mesh, gt_mesh, threshold=threshold)
     return pred_mesh
 

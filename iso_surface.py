@@ -39,5 +39,5 @@ def create_iso_surface_from_label(nifti_path, output_path, target_spacing=1.0, f
 
 
 if __name__ == '__main__':
-    nifti_path = "prostate_dset/val/us_labels/case000070.nii.gz"
-    create_iso_surface_from_label(nifti_path, "prostate_iso_surface_predictions/case000070_pred.ply")
+    nifti_path = "prostate/prostate_dset/val/us_labels/case000070.nii.gz"
+    create_iso_surface_from_label(nifti_path, "prostate/prostate_iso_surface_predictions/case000070_pred.ply")

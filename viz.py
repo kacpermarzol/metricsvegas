@@ -3,10 +3,10 @@ import nibabel as nib
 import numpy as np
 from utils import prepare_mesh
 
-pred_mesh = trimesh.load("prostate_funsr_predictions/case000070_pred.ply")
-gt_mesh = trimesh.load("gt_slicer_output/case000070_gt.ply")
+pred_mesh = trimesh.load("prostate/prostate_funsr_predictions/case000070_pred.ply")
+gt_mesh = trimesh.load("prostate/gt_slicer_output/case000070_gt.ply")
 
-nii = nib.load("prostate_dset/val/us_labels/case000070.nii.gz")
+nii = nib.load("prostate/prostate_dset/val/us_labels/case000070.nii.gz")
 affine = nii.affine
 
 resolution = 128
