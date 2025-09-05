@@ -7,8 +7,11 @@ def save_slices(nii_path, output_dir):
     img = nib.load(nii_path)
     data = img.get_fdata()
 
-    data = np.sum(data, axis=-1)
-    # data = (data>0).astype(np.uint8)
+    #jezeli ma więcej niz 3 kanaly:
+    #data = np.sum(data, axis=-1)
+
+    #jezeli w .nii sa maski:
+    data = (data>0).astype(np.uint8)
 
     os.makedirs(output_dir, exist_ok=True)
     num_slices = data.shape[0]
@@ -31,4 +34,4 @@ def batch_convert_us_labels(input_dir, output_dir):
 
 if __name__ == "__main__":
     batch_convert_us_labels("prostate/prostate_dset/val/us_images",
-                            "prostate/prostate_dset_img_img")
+                            "prostate/prostate_dset_img")
